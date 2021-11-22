@@ -206,4 +206,4 @@ As Fortran, like Julia, is a column-major language, some of the arrays in the Fo
 C++
 ^^^
 
-A C++ wrapper is not provided, as it should be possible to call the C interface directly. You will, however, have to apply `extern "C"` to the AGDeblend header file, as in `the C++ version of Example 1 <https://github/com/ar4/agdeblend/blob/master/examples/example_1.cpp>`_, if you compile the library with a C compiler. Some projects choose to include `extern "C"` in the header file itself so that this is not necessary, but AGDeblend does not do this so that the library can also be compiled with a C++ compiler, if desired.
+A C++ wrapper is not provided, as it should be possible to call the C interface directly. You will, however, have to apply `extern "C"` to the AGDeblend header file, as in `the C++ version of Example 1 <https://github.com/ar4/agdeblend/blob/main/examples/example_1.cpp>`_, if you compile the library with a C compiler. Some projects choose to include `extern "C"` in the header file itself so that this is not necessary, but AGDeblend does not do this so that the library can also be compiled with a C++ compiler, if desired.

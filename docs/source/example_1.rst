@@ -11,6 +11,6 @@ All of the traces in the prepared dataset are also labelled as being live, so al
 
 As this is a straightforward use of the blending function, in each language we only need to load the input data, call the blending function, and save the output.
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_1.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_1.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_1.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_1.f90>`_, `C++ code <https://github/com/ar4/agdeblend/blob/master/examples/example_1.cpp>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_1.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_1.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_1.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_1.f90>`_, `C++ code <https://github.com/ar4/agdeblend/blob/main/examples/example_1.cpp>`_
 
 .. image:: example_1.jpg

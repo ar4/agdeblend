@@ -5,7 +5,7 @@ This example is a simple deblending of one patch, with the only difference from 
 
 Other than providing the wavelets and specifying which index in this list of wavelets to use for each trace (all zeros in this case, since we use the same wavelet for every trace), we don't have to do anything different for this example.
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_7.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_7.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_7.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_7.f90>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_7.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_7.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_7.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_7.f90>`_
 
 .. image:: example_7_wavelet.png
 .. image:: example_7.jpg

@@ -1,5 +1,7 @@
 # AGDeblend
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5719307.svg)](https://doi.org/10.5281/zenodo.5719307)
+
 AGDeblend contains tools to deblend seismic data (separate overlapping shots) and synthetically blend or adjust pseudo-deblended data.
 
 Its aim is to be suitable for both research benchmarking and production. It is thus quick and easy to setup for simple cases, but provides flexibility to handle real-life datasets.
@@ -22,3 +24,7 @@ Its aim is to be suitable for both research benchmarking and production. It is t
 ## Get started
 
 The [documentation](https://ausargeo.pages.dev/agdeblend) contains instructions for installing and using AGDeblend, as well as a description of the included examples.
+
+## Citing
+
+If you wish to cite AGDeblend, the recommended DOI is `10.5281/zenodo.5719307`.

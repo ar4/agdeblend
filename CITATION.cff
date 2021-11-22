@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you wish to cite AGDeblend, this is the recommended citation"
+authors:
+- family-names: "Richardson"
+  given-names: "Alan"
+title: "AGDeblend"
+doi: 10.5281/zenodo.5719307
+date-released: 2021-11-22
+url: "https://github.com/ar4/agdeblend"

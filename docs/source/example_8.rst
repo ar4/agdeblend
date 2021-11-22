@@ -7,7 +7,7 @@ Both of the volumes contain 128 traces. Those in the first volume have 512 time 
 
 Both sources in the input shoot on a similar schedule, so there is substantial blending in this example. Each source blends with itself, as it fires another shot while arrivals from the previous one are still being recorded, but also overlaps with the other source, and with the other source overlapping with itself. That makes this problem more difficult, which is why the number of iterations is increased to 2500.
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_8.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_8.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_8.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_8.f90>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_8.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_8.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_8.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_8.f90>`_
 
 .. image:: example_8_0.jpg
 .. image:: example_8_1.jpg

@@ -9,6 +9,6 @@ We only have one patch in this example, so we can use any value for its coordina
 
 As the signal is perfectly planar in this example and so can be efficiently represented in the Fourier domain, it is likely that an initial threshold factor lower than one could be used to reduce the number of iterations required to get a good result, but for simplicity we leave it at one. We also choose to not print the norm of the residual by setting the printing frequency to be zero or less (-1 in this case).
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_4.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_4.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_4.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_4.f90>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_4.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_4.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_4.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_4.f90>`_
 
 .. image:: example_4.jpg

@@ -9,6 +9,6 @@ The code for this example is more complicated than :doc:`example_1` because of t
 
 As we are using MPI in this example, we need to pass the MPI Communicator to the blending function.
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_3.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_3.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_3.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_3.F90>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_3.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_3.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_3.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_3.F90>`_
 
 .. image:: example_3.jpg

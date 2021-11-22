@@ -23,7 +23,7 @@ For simplicity, we allocate a memory to store the input data as if we had a full
 
 Similarly, we allocate the same full rectangle to copy the output patches into and then extract from this the ranges for the two output files (which cover the same regions as the two input files).
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_9.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_9.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_9.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_9.f90>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_9.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_9.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_9.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_9.f90>`_
 
 .. figure:: example_9_0.jpg
 

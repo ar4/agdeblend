@@ -3,9 +3,9 @@ Examples
 
 The easiest way to learn how to use AGDeblend is to see examples, so several are provided for a range of common situations, in each of the supported programming languages.
 
-In each case, the code assumes that the input arrays have already been created `make_data.c <https://github/com/ar4/agdeblend/blob/master/examples/make_data.c>`_ can be used), loads them, performs the task, and then saves the output to disk.
+In each case, the code assumes that the input arrays have already been created `make_data.c <https://github.com/ar4/agdeblend/blob/main/examples/make_data.c>`_ can be used), loads them, performs the task, and then saves the output to disk.
 
-The code for all of the examples can be found in the `examples <https://github/com/ar4/agdeblend/blob/master/examples/>`_ directory.
+The code for all of the examples can be found in the `examples <https://github.com/ar4/agdeblend/blob/main/examples/>`_ directory.
 
 .. toctree::
 

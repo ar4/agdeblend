@@ -68,4 +68,4 @@ Memory is needed to store intermediate values when applying the forward and adjo
 Source Files
 ------------
 
-The source code files are in the `src <https://github/com/ar4/agdeblend/blob/master/src>`_ directory, with `agdeblend.c <https://github/com/ar4/agdeblend/blob/master/src/agdeblend.c>`_ containing the public functions. For this project, the advantages of a single translation unit were deemed to be greater than the disadvantages of this approach, so `agdeblend.c` uses `#include` to incorporate all of the other source files, and thus this is the only file that needs to be passed to a compiler.
+The source code files are in the `src <https://github.com/ar4/agdeblend/blob/main/src>`_ directory, with `agdeblend.c <https://github.com/ar4/agdeblend/blob/main/src/agdeblend.c>`_ containing the public functions. For this project, the advantages of a single translation unit were deemed to be greater than the disadvantages of this approach, so `agdeblend.c` uses `#include` to incorporate all of the other source files, and thus this is the only file that needs to be passed to a compiler.

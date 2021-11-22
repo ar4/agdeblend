@@ -13,6 +13,6 @@ By opting instead to have the first 80 traces in the first patch and the last 64
 
 The overlap of the patches is again relevant at the end of the example when we are ready to write the output to a file. In the overlap region between the two patches, the amplitude of the estimated signal will be shared between both patches. We therefore need to sum the corresponding overlapping traces from the two patches to obtain the output for those traces. In this example we do that by adding the first 16 traces of the second patch to the last 16 traces of the first patch. When we write the traces to the output file, we then write all of the traces from the first patch, but we skip the first 16 traces of the second patch as they have already been taken care of by the first patch, so the output file will end-up with the desired 128 traces.
 
-`C code <https://github/com/ar4/agdeblend/blob/master/examples/example_5.c>`_, `Python code <https://github/com/ar4/agdeblend/blob/master/examples/example_5.py>`_, `Julia code <https://github/com/ar4/agdeblend/blob/master/examples/example_5.jl>`_, `Fortran code <https://github/com/ar4/agdeblend/blob/master/examples/example_5.f90>`_
+`C code <https://github.com/ar4/agdeblend/blob/main/examples/example_5.c>`_, `Python code <https://github.com/ar4/agdeblend/blob/main/examples/example_5.py>`_, `Julia code <https://github.com/ar4/agdeblend/blob/main/examples/example_5.jl>`_, `Fortran code <https://github.com/ar4/agdeblend/blob/main/examples/example_5.f90>`_
 
 .. image:: example_5.jpg

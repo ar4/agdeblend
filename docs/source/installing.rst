@@ -41,7 +41,9 @@ Once you have the AGDeblend library installed, and have added it to the paths th
 Python
 ^^^^^^
 
-To install the Python wrapper, enter the ``wrappers/python`` directory, and run ``AGD_LIB_DIR=<absolute path to installed AGDeblend library> pip install .``. This assumes that the single-precision non-MPI library is called ``agdeblend`` (with or without ``lib`` at the front), the double-precision version adds ``_double`` afterwards, and the MPI version(s) add ``_mpi`` at the end. If you did not install all of these versions of the library, the Python wrapper support for those features will not be installed. Once this has completed, you should be able to ``import agdeblend`` into your own code.
+To install the Python wrapper, run ``AGD_LIB_DIR=<absolute path to installed AGDeblend library> pip install agdeblend`` (or, if you want to use the local wrapper code instead of downloading from PyPI, enter the ``wrappers/python`` directory, and replace the ``pip`` part of the command by ``pip install .``). On some systems you might need to use ``pip3`` instead, or ``python3 -m pip``. This assumes that the single-precision non-MPI library is called ``agdeblend`` (with or without ``lib`` at the front), the double-precision version adds ``_double`` afterwards, and the MPI version(s) add ``_mpi`` at the end. If you did not install all of these versions of the library, the Python wrapper support for those features will not be installed. Once this has completed, you should be able to ``import agdeblend`` into your own code.
+
+If you want to use MPI support from Python, in addition to compiling the MPI versions of the AGDeblend library, you will also need the `mpi4py <https://github.com/mpi4py/mpi4py>`_ Python package before installing ``agdeblend``. You can either do this manually (``pip install mpi4py``), or you can add ``[mpi]`` to the end of the ``agdeblend`` installation command (so the ``pip`` part would become ``pip install agdeblend[mpi]`` or ``pip install .[mpi]``) for it to be done automatically.
 
 Julia
 ^^^^^

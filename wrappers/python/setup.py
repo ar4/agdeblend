@@ -1,30 +1,21 @@
 import os
 import setuptools
 from setuptools import setup
-from agdeblend.agdeblend_libs import lib_exists
+from agdeblend_libs import lib_exists
 
 cffi_modules = []
 if lib_exists["agdeblend"]:
-    cffi_modules.append(
-        os.path.join("agdeblend", "agdeblend_build.py") + ":ffibuilder"
-    )
+    cffi_modules.append("agdeblend_build.py" + ":ffibuilder")
 if lib_exists["agdeblend_double"]:
-    cffi_modules.append(
-        os.path.join("agdeblend", "agdeblend_build.py") + ":ffibuilder_double"
-    )
+    cffi_modules.append("agdeblend_build.py" + ":ffibuilder_double")
 if lib_exists["agdeblend_mpi"]:
-    cffi_modules.append(
-        os.path.join("agdeblend", "agdeblend_build.py") + ":ffibuilder_mpi"
-    )
+    cffi_modules.append("agdeblend_build.py" + ":ffibuilder_mpi")
 if lib_exists["agdeblend_mpi_double"]:
-    cffi_modules.append(
-        os.path.join("agdeblend", "agdeblend_build.py")
-        + ":ffibuilder_mpi_double"
-    )
+    cffi_modules.append("agdeblend_build.py" + ":ffibuilder_mpi_double")
 
 setup(
     name="agdeblend",
-    version="1.0.0",
+    version="1.0.1",
     description="Seismic data blending and deblending",
     url="https://github.com/ar4/agdeblend",
     author="Alan Richardson",

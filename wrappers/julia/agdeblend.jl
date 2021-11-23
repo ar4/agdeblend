@@ -1,6 +1,22 @@
+module FakeMPI
+  Comm = Nothing
+  MPI_Comm = nothing
+end
+
 module AGDeblend
 
-using MPI
+haveMPI = try
+  using MPI
+  true
+catch
+  false
+end
+  
+if (haveMPI)
+  using MPI
+else
+  const MPI = FakeMPI
+end
 
 AGDLive = Cint(0)
 AGDBad = Cint(1)
@@ -158,59 +174,59 @@ function deblend_c(n_patches, volumes::Array{Cint}, n_dims::Array{Cint},
                  print_freq, data)
 end
 
+if haveMPI
 # Single precision, MPI
-function deblend_c(n_patches, volumes::Array{Cint}, n_dims::Array{Cint},
-                   window_shapes::Array{<:Array{Cint}},
-                 coords::Array{<:Array{Cint}},
-                 shapes::Array{<:Array{Cint}},
-                 shottimes::Array{<:Array{Clong}},
-                 channels::Array{<:Array{Cint}},
-                 trace_types::Array{<:Array{Cint}},
-                 wavelet_lengths::Union{Array{Cint}, Ptr{Nothing}},
-                 wavelet_idxs::Union{Array{<:Array{Cint}}, Ptr{Nothing}},
-                 wavelets::Union{Array{<:Array{Cfloat}}, Ptr{Nothing}},
-                 initial_factor, n_its, print_freq, comm::MPI.Comm,
-                 data::Array{<:Array{Cfloat}})
-    return ccall((:agd_deblend, "libagdeblend_mpi"), Cint,
-                 (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Cint}}, Ref{Ptr{Cint}},
-                  Ref{Ptr{Cint}}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
-                  Ref{Ptr{Cint}}, Ptr{Cint}, Ptr{Ptr{Cint}}, Ptr{Ptr{Cfloat}},
-                  Cfloat, Cint, Cint, MPI.MPI_Comm, Ref{Ptr{Cfloat}}),
-                 n_patches, volumes, n_dims,
-                 window_shapes, coords,
-                 shapes, shottimes,
-                 channels, trace_types,
-                 wavelet_lengths, wavelet_idxs, wavelets, initial_factor, n_its,
-                 print_freq, comm, data)
+  function deblend_c(n_patches, volumes::Array{Cint}, n_dims::Array{Cint},
+                     window_shapes::Array{<:Array{Cint}},
+                   coords::Array{<:Array{Cint}},
+                   shapes::Array{<:Array{Cint}},
+                   shottimes::Array{<:Array{Clong}},
+                   channels::Array{<:Array{Cint}},
+                   trace_types::Array{<:Array{Cint}},
+                   wavelet_lengths::Union{Array{Cint}, Ptr{Nothing}},
+                   wavelet_idxs::Union{Array{<:Array{Cint}}, Ptr{Nothing}},
+                   wavelets::Union{Array{<:Array{Cfloat}}, Ptr{Nothing}},
+                   initial_factor, n_its, print_freq, comm::MPI.Comm,
+                   data::Array{<:Array{Cfloat}})
+      return ccall((:agd_deblend, "libagdeblend_mpi"), Cint,
+                   (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Cint}}, Ref{Ptr{Cint}},
+                    Ref{Ptr{Cint}}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
+                    Ref{Ptr{Cint}}, Ptr{Cint}, Ptr{Ptr{Cint}}, Ptr{Ptr{Cfloat}},
+                    Cfloat, Cint, Cint, MPI.MPI_Comm, Ref{Ptr{Cfloat}}),
+                   n_patches, volumes, n_dims,
+                   window_shapes, coords,
+                   shapes, shottimes,
+                   channels, trace_types,
+                   wavelet_lengths, wavelet_idxs, wavelets, initial_factor, n_its,
+                   print_freq, comm, data)
+  end
+  
+  # Double precision, MPI
+  function deblend_c(n_patches, volumes::Array{Cint}, n_dims::Array{Cint},
+                     window_shapes::Array{<:Array{Cint}},
+                   coords::Array{<:Array{Cint}},
+                   shapes::Array{<:Array{Cint}},
+                   shottimes::Array{<:Array{Clong}},
+                   channels::Array{<:Array{Cint}},
+                   trace_types::Array{<:Array{Cint}},
+                   wavelet_lengths::Union{Array{Cint}, Ptr{Nothing}},
+                   wavelet_idxs::Union{Array{<:Array{Cint}}, Ptr{Nothing}},
+                   wavelets::Union{Array{<:Array{Cdouble}}, Ptr{Nothing}},
+                   initial_factor, n_its, print_freq, comm::MPI.Comm,
+                   data::Array{<:Array{Cdouble}})
+      return ccall((:agd_deblend, "libagdeblend_double_mpi"), Cint,
+                   (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Cint}}, Ref{Ptr{Cint}},
+                    Ref{Ptr{Cint}}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
+                    Ref{Ptr{Cint}}, Ptr{Cint}, Ptr{Ptr{Cint}}, Ptr{Ptr{Cdouble}},
+                    Cdouble, Cint, Cint, MPI.MPI_Comm, Ref{Ptr{Cdouble}}),
+                   n_patches, volumes, n_dims,
+                   window_shapes, coords,
+                   shapes, shottimes,
+                   channels, trace_types,
+                   wavelet_lengths, wavelet_idxs, wavelets, initial_factor, n_its,
+                   print_freq, comm, data)
+  end
 end
-
-# Double precision, MPI
-function deblend_c(n_patches, volumes::Array{Cint}, n_dims::Array{Cint},
-                   window_shapes::Array{<:Array{Cint}},
-                 coords::Array{<:Array{Cint}},
-                 shapes::Array{<:Array{Cint}},
-                 shottimes::Array{<:Array{Clong}},
-                 channels::Array{<:Array{Cint}},
-                 trace_types::Array{<:Array{Cint}},
-                 wavelet_lengths::Union{Array{Cint}, Ptr{Nothing}},
-                 wavelet_idxs::Union{Array{<:Array{Cint}}, Ptr{Nothing}},
-                 wavelets::Union{Array{<:Array{Cdouble}}, Ptr{Nothing}},
-                 initial_factor, n_its, print_freq, comm::MPI.Comm,
-                 data::Array{<:Array{Cdouble}})
-    return ccall((:agd_deblend, "libagdeblend_double_mpi"), Cint,
-                 (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Cint}}, Ref{Ptr{Cint}},
-                  Ref{Ptr{Cint}}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
-                  Ref{Ptr{Cint}}, Ptr{Cint}, Ptr{Ptr{Cint}}, Ptr{Ptr{Cdouble}},
-                  Cdouble, Cint, Cint, MPI.MPI_Comm, Ref{Ptr{Cdouble}}),
-                 n_patches, volumes, n_dims,
-                 window_shapes, coords,
-                 shapes, shottimes,
-                 channels, trace_types,
-                 wavelet_lengths, wavelet_idxs, wavelets, initial_factor, n_its,
-                 print_freq, comm, data)
-end
-
-
 
 function blend(shottimes::Array{<:Array{<:Integer}},
                channels::Array{<:Array{<:Integer}},
@@ -357,52 +373,54 @@ function blend_c(n_patches, n_traces::Array{Cint}, n_times::Array{Cint},
                  data_out)
 end
 
-# Single precision, MPI
-function blend_c(n_patches, n_traces::Array{Cint}, n_times::Array{Cint},
-                 shottimes::Array{<:Array{Clong}},
-                 channels::Array{<:Array{Cint}},
-                 trace_types::Array{<:Array{Cint}},
-                 data::Array{<:Array{Cfloat}},
-                 blend_mode, taper_length, n_patches_out,
-                 n_traces_out::Array{Cint}, n_times_out::Array{Cint},
-                 shottimes_out::Array{<:Array{Clong}},
-                 channels_out::Array{<:Array{Cint}},
-                 trace_types_out::Array{<:Array{Cint}},
-                 comm::MPI.Comm, data_out::Array{<:Array{Cfloat}})
-    return ccall((:agd_blend, "libagdeblend_mpi"), Cint,
-                 (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
-                  Ref{Ptr{Cint}}, Ref{Ptr{Cfloat}}, Cint,
-                  Cint, Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}},
-                  Ref{Ptr{Cint}}, Ref{Ptr{Cint}}, MPI.MPI_Comm,
-                  Ref{Ptr{Cfloat}}),
-                 n_patches, n_traces, n_times, shottimes, channels, trace_types,
-                 data, blend_mode, taper_length, n_patches_out, n_traces_out,
-                 n_times_out, shottimes_out, channels_out, trace_types_out,
-                 comm, data_out)
-end
+if haveMPI
+  # Single precision, MPI
+  function blend_c(n_patches, n_traces::Array{Cint}, n_times::Array{Cint},
+                   shottimes::Array{<:Array{Clong}},
+                   channels::Array{<:Array{Cint}},
+                   trace_types::Array{<:Array{Cint}},
+                   data::Array{<:Array{Cfloat}},
+                   blend_mode, taper_length, n_patches_out,
+                   n_traces_out::Array{Cint}, n_times_out::Array{Cint},
+                   shottimes_out::Array{<:Array{Clong}},
+                   channels_out::Array{<:Array{Cint}},
+                   trace_types_out::Array{<:Array{Cint}},
+                   comm::MPI.Comm, data_out::Array{<:Array{Cfloat}})
+      return ccall((:agd_blend, "libagdeblend_mpi"), Cint,
+                   (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
+                    Ref{Ptr{Cint}}, Ref{Ptr{Cfloat}}, Cint,
+                    Cint, Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}},
+                    Ref{Ptr{Cint}}, Ref{Ptr{Cint}}, MPI.MPI_Comm,
+                    Ref{Ptr{Cfloat}}),
+                   n_patches, n_traces, n_times, shottimes, channels, trace_types,
+                   data, blend_mode, taper_length, n_patches_out, n_traces_out,
+                   n_times_out, shottimes_out, channels_out, trace_types_out,
+                   comm, data_out)
+  end
 
-# Double precision, no MPI
-function blend_c(n_patches, n_traces::Array{Cint}, n_times::Array{Cint},
-                 shottimes::Array{<:Array{Clong}},
-                 channels::Array{<:Array{Cint}},
-                 trace_types::Array{<:Array{Cint}},
-                 data::Array{<:Array{Cdouble}},
-                 blend_mode, taper_length, n_patches_out,
-                 n_traces_out::Array{Cint}, n_times_out::Array{Cint},
-                 shottimes_out::Array{<:Array{Clong}},
-                 channels_out::Array{<:Array{Cint}},
-                 trace_types_out::Array{<:Array{Cint}},
-                 comm::MPI.Comm, data_out::Array{<:Array{Cdouble}})
-    return ccall((:agd_blend, "libagdeblend_double_mpi"), Cint,
-                 (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
-                  Ref{Ptr{Cint}}, Ref{Ptr{Cdouble}}, Cint,
-                  Cint, Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}},
-                  Ref{Ptr{Cint}}, Ref{Ptr{Cint}}, MPI.MPI_Comm,
-                  Ref{Ptr{Cdouble}}),
-                 n_patches, n_traces, n_times, shottimes, channels, trace_types,
-                 data, blend_mode, taper_length, n_patches_out, n_traces_out,
-                 n_times_out, shottimes_out, channels_out, trace_types_out,
-                 comm, data_out)
+  # Double precision, MPI
+  function blend_c(n_patches, n_traces::Array{Cint}, n_times::Array{Cint},
+                   shottimes::Array{<:Array{Clong}},
+                   channels::Array{<:Array{Cint}},
+                   trace_types::Array{<:Array{Cint}},
+                   data::Array{<:Array{Cdouble}},
+                   blend_mode, taper_length, n_patches_out,
+                   n_traces_out::Array{Cint}, n_times_out::Array{Cint},
+                   shottimes_out::Array{<:Array{Clong}},
+                   channels_out::Array{<:Array{Cint}},
+                   trace_types_out::Array{<:Array{Cint}},
+                   comm::MPI.Comm, data_out::Array{<:Array{Cdouble}})
+      return ccall((:agd_blend, "libagdeblend_double_mpi"), Cint,
+                   (Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}}, Ref{Ptr{Cint}},
+                    Ref{Ptr{Cint}}, Ref{Ptr{Cdouble}}, Cint,
+                    Cint, Cint, Ref{Cint}, Ref{Cint}, Ref{Ptr{Clong}},
+                    Ref{Ptr{Cint}}, Ref{Ptr{Cint}}, MPI.MPI_Comm,
+                    Ref{Ptr{Cdouble}}),
+                   n_patches, n_traces, n_times, shottimes, channels, trace_types,
+                   data, blend_mode, taper_length, n_patches_out, n_traces_out,
+                   n_times_out, shottimes_out, channels_out, trace_types_out,
+                   comm, data_out)
+  end
 end
 
 function check_n_patches(n_patches, var, name)

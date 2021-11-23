@@ -1,5 +1,5 @@
 from cffi import FFI
-from agdeblend.agdeblend_libs import lib_dir, lib_exists
+from agdeblend_libs import lib_dir, lib_exists
 
 cdef = """
 enum AGDTraceType { AGDLive, AGDBad, AGDMissing };

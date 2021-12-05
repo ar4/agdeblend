@@ -4,7 +4,7 @@
 
 AGDeblend contains tools to deblend seismic data (separate overlapping shots) and synthetically blend or adjust pseudo-deblended data.
 
-Its aim is to be suitable for both research benchmarking and production. It is thus quick and easy to setup for simple cases, but provides flexibility to handle real-life datasets.
+It is quick and easy to setup for simple cases, but provides flexibility to handle real-life datasets.
 
 ![Deblending example](deblend_example.jpg)
 

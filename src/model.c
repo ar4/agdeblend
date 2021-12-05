@@ -833,6 +833,11 @@ static int allocate_temporary_arrays(struct FKConfigs const *const fk_configs,
     n_elements = config->n_elements_tx_output_capacity;
     n_bytes = (size_t)n_elements * sizeof(AGD_TYPE);
     if (n_bytes > n_required_bytes) n_required_bytes = n_bytes;
+
+    /* After FX transformation if using wavelets */
+    n_elements = config->n_traces * (config->n_times_output_capacity / 2 + 1);
+    n_bytes = (size_t)n_elements * sizeof(AGD_FFTW_COMPLEX);
+    if (n_bytes > n_required_bytes) n_required_bytes = n_bytes;
   }
 
   /* Allocate the space */
